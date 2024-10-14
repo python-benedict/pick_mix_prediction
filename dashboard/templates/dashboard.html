@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitch Mix Predictions</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Pitch Mix Predictions by Player for 2024 MLB Season</h1>
+
+    <!-- Dropdown for player selection -->
+    <form method="GET" action="{% url 'dashboard' %}">
+        <label for="player">Select Player:</label>
+        <select name="player" id="player" onchange="this.form.submit()">
+            {% for player in player_options %}
+                <option value="{{ player }}" {% if player == selected_player %}selected{% endif %}>{{ player }}</option>
+            {% endfor %}
+        </select>
+    </form>
+
+    <!-- Display Pie Chart -->
+    <div>
+        {{ pie_chart|safe }}
+    </div>
+
+    <!-- Display Bar Chart -->
+    <div>
+        {{ bar_chart|safe }}
+    </div>
+</body>
+</html>
